@@ -19,10 +19,10 @@ public class Login extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.print("<fieldset><legend>Login Form</legend>");
-		out.print("<form action='/loginvalidate' method='post'>");
+		out.print("<form action='loginvalidate' method='post'>");
 		out.print("<table><tbody><tr><td><label for='email'>Email:</label></td>");
 		out.print("<td><input type='email' id='email' name='email' required/></td></tr>");
-		out.print("<tr><td><label for='pass'>Password:</label><td>");
+		out.print("<tr><td><label for='pass'>Password:</label></td>");
 		out.print("<td><input type='password' id='pass' name='pass' required/></td></tr>");
 		out.print("<tr><td/><td><input type='submit' value='SUBMIT'/></td></tr></tbody></table></form></fieldset>");
 		out.close();

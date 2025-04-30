@@ -13,7 +13,7 @@ public class ConnectDB {
 
 	public ConnectDB() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/servlet", "root", "");
 		stmt = con.createStatement();
 	}
 

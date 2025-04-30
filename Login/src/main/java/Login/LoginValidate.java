@@ -1,5 +1,6 @@
 package Login;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -19,25 +20,25 @@ import JDBC.ConnectDB;
 @WebServlet("/loginvalidate")
 public class LoginValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String password = request.getParameter("pass");
 		ConnectDB cdb;
 		try {
 			cdb = new ConnectDB();
-			ResultSet rs = cdb.read("SELECT * FROM users WHERE email='"+email+"' and password='"+password+"';");
-			if(rs.next()) {
-				response.addCookie(new Cookie("email",email));
-				response.addCookie(new Cookie("password",password));
+			ResultSet rs = cdb.read("SELECT * FROM users WHERE email='" + email + "' and password='" + password + "';");
+			if (rs.next()) {
+				response.addCookie(new Cookie("email", email));
 				response.sendRedirect("dashboard");
 			} else {
 				out.println("Invalid credentials!!!");
-				response.sendRedirect("login");
+				RequestDispatcher rd = request.getRequestDispatcher("login");
+				rd.include(request, response);
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,9 +46,11 @@ public class LoginValidate extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

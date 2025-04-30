@@ -46,8 +46,9 @@ public class SigninValidate extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("login");
 				rd.include(request, response);
 			} else {
-				out.println("Password mismatch, Relogin!!!");
-				response.sendRedirect("index.html");
+				out.println("Password mismatch, Sign in again!!!");
+				RequestDispatcher rd = request.getRequestDispatcher("index.html");
+				rd.include(request, response);
 			}
 			cdb.close();
 			out.close();

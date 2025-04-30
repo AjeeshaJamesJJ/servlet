@@ -2,6 +2,7 @@ package Login;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,12 +24,19 @@ public class Dashboard extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String email = request.getCookies()[0].getValue();
-		String password = request.getCookies()[1].getValue();
+		String email = null;
+		if (request.getCookies() != null) {
+			for (Cookie cookie : request.getCookies()) {
+				if (cookie.getName().equals("email")) {
+					email = cookie.getValue();
+					break;
+				}
+			}
+		}
 
 		try {
 			ConnectDB cdb = new ConnectDB();
-			ResultSet rs = cdb.read("SELECT * FROM users WHERE email='" + email + "' and password='" + password + "';");
+			ResultSet rs = cdb.read("SELECT * FROM users WHERE email='" + email + "';");
 			if (rs.next()) {
 				out.print(
 						"<fieldset><legend>Welcome to your dashboard</legend><table><tbody><tr><td><p><b>NAME:</b></p></td><td><p>"
