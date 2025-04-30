@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<fieldset>
+		<legend>Sign In</legend>
+		<form action="signinvalidate" method="post">
+			<table>
+				<tbody>
+					<tr>
+						<td><label for="fname">First Name:</label></td>
+						<td><input type="text" placeholder="enter your first name"
+							name="fname" id="fname" required /></td>
+					</tr>
+					<tr>
+						<td><label for="lname">Last Name:</label></td>
+						<td><input type="text" placeholder="enter your last name"
+							name="lname" id="lname" required /></td>
+					</tr>
+					<tr>
+						<td><label for="num">Phone:</label></td>
+						<td><input type="tel" pattern="\d{10}" maxlength="10"
+							title="Enter exactly 10 digits"
+							placeholder="enter your phone number" id="num" name="num"
+							required /></td>
+					</tr>
+					<tr>
+						<td><label for="email">Email:</label></td>
+						<td><input type="email" placeholder="enter your email"
+							name="email" id="email" required /></td>
+					</tr>
+					<tr>
+						<td><label for="pass">Password:</label></td>
+						<td><input type="password"
+							placeholder="enter a strong password" name="pass" id="pass"
+							required /></td>
+					</tr>
+					<tr>
+						<td><label for="cpass">Confirm Password:</label></td>
+						<td><input type="password" placeholder="reenter the password"
+							name="cpass" id="cpass" required /></td>
+					</tr>
+					<tr>
+						<td />
+						<td><input type="submit" value="Sign in" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</fieldset>
+</body>
+</html>
